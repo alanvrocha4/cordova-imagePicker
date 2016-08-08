@@ -21,7 +21,7 @@ import org.apache.cordova.PluginResult;
 
 public class ImagePicker extends CordovaPlugin {
 	public static String TAG = "ImagePicker";
-	public static Int PERMISSION_REQUEST_CODE = 100;
+	private static final int PERMISSION_REQUEST_CODE = 100;
 	 
 	private CallbackContext callbackContext;
 	private JSONObject params;
@@ -86,6 +86,7 @@ public class ImagePicker extends CordovaPlugin {
 	    switch(requestCode)
 	    {
 	        case PERMISSION_REQUEST_CODE:
+	        	Intent intent = new Intent(cordova.getActivity(), CameraActivity.class);
 	            this.cordova.startActivityForResult((CordovaPlugin) this, intent, 0);
 	            break;
 	    }
