@@ -17,10 +17,11 @@ import android.content.Intent;
 import android.util.Log;
 import android.Manifest;
 import android.content.pm.PackageManager;
+import org.apache.cordova.PluginResult;
 
 public class ImagePicker extends CordovaPlugin {
 	public static String TAG = "ImagePicker";
-	public static String PERMISSION_REQUEST_CODE = 100;
+	public static Int PERMISSION_REQUEST_CODE = 100;
 	 
 	private CallbackContext callbackContext;
 	private JSONObject params;
