@@ -36,4 +36,19 @@ ImagePicker.prototype.getPictures = function(success, fail, options) {
 	return cordova.exec(success, fail, "ImagePicker", "getPictures", [params]);
 };
 
+ImagePicker.prototype.takePictures = function(success, fail, options) {
+	if (!options) {
+		options = {};
+	}
+	
+	var params = {
+		maximumImagesCount: options.maximumImagesCount ? options.maximumImagesCount : 15,
+		width: options.width ? options.width : 0,
+		height: options.height ? options.height : 0,
+		quality: options.quality ? options.quality : 100
+	};
+
+	return cordova.exec(success, fail, "ImagePicker", "takePictures", [params]);
+};
+
 window.imagePicker = new ImagePicker();
