@@ -52,7 +52,7 @@ public class ImagePicker extends CordovaPlugin {
 			}
 		}
 
-		if (action.equals("getPictures")) {
+		if (action.equals("takePictures")) {
 			Intent intent = new Intent(cordova.getActivity(), CameraActivity.class);
 			
 			if (this.cordova != null) {
