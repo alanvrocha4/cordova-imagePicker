@@ -1,4 +1,4 @@
-package com.stopmotion;
+package com.synconset;
 
 import java.io.IOException;
 

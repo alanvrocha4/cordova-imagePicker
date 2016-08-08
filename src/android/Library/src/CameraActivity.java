@@ -1,4 +1,4 @@
-package com.stopmotion;
+package com.synconset;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.stopmotion.FakeR;
+import com.synconset.FakeR;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -28,8 +28,6 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
-import org.apache.cordova.PermissionHelper;
-import android.Manifest;
 
 public class CameraActivity extends Activity {
 	
