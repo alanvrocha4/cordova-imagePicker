@@ -15,9 +15,12 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
+import android.Manifest;
+import android.content.pm.PackageManager;
 
 public class ImagePicker extends CordovaPlugin {
 	public static String TAG = "ImagePicker";
+	public static String PERMISSION_REQUEST_CODE = 100;
 	 
 	private CallbackContext callbackContext;
 	private JSONObject params;
@@ -53,15 +56,40 @@ public class ImagePicker extends CordovaPlugin {
 		}
 
 		if (action.equals("takePictures")) {
+
+			
 			Intent intent = new Intent(cordova.getActivity(), CameraActivity.class);
 			
 			if (this.cordova != null) {
-				this.cordova.startActivityForResult((CordovaPlugin) this, intent, 0);
+				if(cordova.hasPermission(Manifest.permission.CAMERA))
+					this.cordova.startActivityForResult((CordovaPlugin) this, intent, 0);
+				else
+					cordova.requestPermission((CordovaPlugin) this, PERMISSION_REQUEST_CODE,Manifest.permission.CAMERA);
 			}
 		}
 		return true;
 	}
 	
+
+	public void onRequestPermissionResult(int requestCode, String[] permissions,
+                                         int[] grantResults) throws JSONException
+	{
+	    for(int r:grantResults)
+	    {
+	        if(r == PackageManager.PERMISSION_DENIED)
+	        {
+	            this.callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, PERMISSION_DENIED_ERROR));
+	            return;
+	        }
+	    }
+	    switch(requestCode)
+	    {
+	        case PERMISSION_REQUEST_CODE:
+	            this.cordova.startActivityForResult((CordovaPlugin) this, intent, 0);
+	            break;
+	    }
+	}
+
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode == Activity.RESULT_OK && data != null) {
 			ArrayList<String> fileNames = data.getStringArrayListExtra("MULTIPLEFILENAMES");
