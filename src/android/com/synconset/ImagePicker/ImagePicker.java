@@ -21,6 +21,7 @@ import org.apache.cordova.PluginResult;
 
 public class ImagePicker extends CordovaPlugin {
 	public static String TAG = "ImagePicker";
+	private static final String PERMISSION_DENIED_ERROR = "Camera Permission Denied";
 	private static final int PERMISSION_REQUEST_CODE = 100;
 	 
 	private CallbackContext callbackContext;
