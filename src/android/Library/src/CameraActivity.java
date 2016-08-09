@@ -41,6 +41,7 @@ public class CameraActivity extends Activity {
     public static final int PHOTO_WIDTH = 600;
     public static final int PHOTO_HEIGHT = 600;
     public static final int PHOTO_QUALITY = 50;
+    private ProgressDialog dialog;
 
     ArrayList<String> imgsPath = new ArrayList<String>();
 	protected static final String TAG = "TESTECAMERA";
