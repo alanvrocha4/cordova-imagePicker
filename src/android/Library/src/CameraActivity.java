@@ -64,8 +64,8 @@ public class CameraActivity extends Activity {
                 // set the focus mode
     			params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
 
-                //set quality
-                params.setJpegQuality(50);
+                //set orientation
+                c.setDisplayOrientation(90);
     			
                 // set Camera parameters
     			c.setParameters(params);
