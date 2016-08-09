@@ -60,9 +60,14 @@ public class CameraActivity extends Activity {
 
     		List<String> focusModes = params.getSupportedFocusModes();
     		if (focusModes.contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
-    			// set the focus mode
+    			
+                // set the focus mode
     			params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
-    			// set Camera parameters
+
+                //set orientation
+                setDisplayOrientation(mCamera, 90);
+    			
+                // set Camera parameters
     			c.setParameters(params);
     		}
 	    }
