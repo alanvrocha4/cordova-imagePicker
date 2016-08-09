@@ -13,6 +13,7 @@ import java.util.List;
 import com.synconset.FakeR;
 import com.synconset.CameraPreview;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
