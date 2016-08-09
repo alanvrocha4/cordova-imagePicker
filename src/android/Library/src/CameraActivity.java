@@ -1,5 +1,6 @@
 package com.synconset;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -15,6 +16,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.hardware.Camera;
 import android.hardware.Camera.PictureCallback;
 import android.net.Uri;
@@ -35,6 +38,9 @@ public class CameraActivity extends Activity {
 
     public static final int MEDIA_TYPE_IMAGE = 1;
     public static final int MEDIA_TYPE_VIDEO = 2;
+    public static final int PHOTO_WIDTH = 800;
+    public static final int PHOTO_HEIGHT = 800;
+    
     ArrayList<String> imgsPath = new ArrayList<String>();
 	protected static final String TAG = "TESTECAMERA";
     
@@ -142,7 +148,8 @@ public class CameraActivity extends Activity {
     	
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
-        	new SaveImageTask().execute(data);
+        	byte[] resized = resizeImage(data);
+            new SaveImageTask().execute(resized);
 			resetCam();
         }
     };
@@ -152,6 +159,16 @@ public class CameraActivity extends Activity {
 		mediaScanIntent.setData(Uri.fromFile(file));
 		sendBroadcast(mediaScanIntent);
 	}
+
+    private byte[] resizeImage(byte[] input) {
+        Bitmap original = BitmapFactory.decodeByteArray(input , 0, input.length);
+        Bitmap resized = Bitmap.createScaledBitmap(original, PHOTO_WIDTH, PHOTO_HEIGHT, true);
+             
+        ByteArrayOutputStream blob = new ByteArrayOutputStream();
+        resized.compress(Bitmap.CompressFormat.JPEG, 100, blob);
+     
+        return blob.toByteArray();
+    }
     
 	private class SaveImageTask extends AsyncTask<byte[], Void, Void> {
 
