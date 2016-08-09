@@ -65,7 +65,7 @@ public class CameraActivity extends Activity {
     			params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
 
                 //set orientation
-                setDisplayOrientation(mCamera, 90);
+                params.setDisplayOrientation(mCamera, 90);
     			
                 // set Camera parameters
     			c.setParameters(params);
