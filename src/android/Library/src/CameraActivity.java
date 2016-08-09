@@ -153,6 +153,7 @@ public class CameraActivity extends Activity {
         public void onPictureTaken(byte[] data, Camera camera) {
         	byte[] resized = resizeImage(data);
             new SaveImageTask().execute(resized);
+            resetCam();
         }
     };
     
@@ -174,15 +175,15 @@ public class CameraActivity extends Activity {
     
 	private class SaveImageTask extends AsyncTask<byte[], Void, Void> {
 
-        @Override
-        public void onPreExecute() {
+        // @Override
+        // public void onPreExecute() {
 
-            dialog = new ProgressDialog(CameraActivity.this);
+        //     dialog = new ProgressDialog(CameraActivity.this);
 
-            dialog.setMessage("Gravando...");
-            dialog.show();
+        //     dialog.setMessage("Gravando...");
+        //     dialog.show();
 
-        }
+        // }
 
 		@Override
 		protected Void doInBackground(byte[]... data) {
@@ -215,11 +216,11 @@ public class CameraActivity extends Activity {
 			return null;
 		}
 
-        
-        protected void onPostExecute(String result) {
-            dialog.cancel();
-            resetCam();
-        }
+        // @Override
+        // protected void onPostExecute(String result) {
+        //     dialog.cancel();
+        //     resetCam();
+        // }
 
 	}
 
