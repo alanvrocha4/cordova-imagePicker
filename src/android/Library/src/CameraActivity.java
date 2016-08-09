@@ -66,10 +66,13 @@ public class CameraActivity extends Activity {
 
                 //set orientation
                 params.setDisplayOrientation(mCamera, 90);
+
+                //set quality
+                params.setJpegQuality(50);
     			
                 // set Camera parameters
     			c.setParameters(params);
-    		}
+
 	    }
 	    catch (Exception e){
 	        // Camera is not available (in use or does not exist)
