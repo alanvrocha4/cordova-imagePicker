@@ -62,16 +62,16 @@ public class CameraActivity extends Activity {
     		if (focusModes.contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
     			
                 // set the focus mode
-    			params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
+                params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
 
                 //set orientation
-                params.setDisplayOrientation(mCamera, 90);
+                c.setDisplayOrientation(90);
 
                 //set quality
                 params.setJpegQuality(50);
-    			
+                                
                 // set Camera parameters
-    			c.setParameters(params);
+                c.setParameters(params);
 
 	    }
 	    catch (Exception e){
