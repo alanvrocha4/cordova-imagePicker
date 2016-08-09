@@ -38,9 +38,10 @@ public class CameraActivity extends Activity {
 
     public static final int MEDIA_TYPE_IMAGE = 1;
     public static final int MEDIA_TYPE_VIDEO = 2;
-    public static final int PHOTO_WIDTH = 800;
-    public static final int PHOTO_HEIGHT = 800;
-    
+    public static final int PHOTO_WIDTH = 600;
+    public static final int PHOTO_HEIGHT = 600;
+    public static final int PHOTO_QUALITY = 50;
+
     ArrayList<String> imgsPath = new ArrayList<String>();
 	protected static final String TAG = "TESTECAMERA";
     
@@ -72,7 +73,7 @@ public class CameraActivity extends Activity {
     		}
 
             //set quality
-            params.setJpegQuality(50);
+            params.setJpegQuality(PHOTO_QUALITY);
 
             // set Camera parameters
             c.setParameters(params);
