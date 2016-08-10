@@ -125,7 +125,7 @@ public class CameraActivity extends Activity {
                 public void onClick(View v) {
                 	Log.d(TAG, "CLICOU");
                 	Intent data = new Intent();
-                	
+                	Log.d(TAG, "==================TOTAL IMAGENS:"+ imgsPath.size().toString() +" ======");
                 	if(imgsPath.size() > 0){
                 		Bundle res = new Bundle();
                         res.putStringArrayList("MULTIPLEFILENAMES", imgsPath);
