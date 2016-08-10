@@ -23,6 +23,7 @@ public class ImagePicker extends CordovaPlugin {
 	public static String TAG = "ImagePicker";
 	private static final String PERMISSION_DENIED_ERROR = "Camera Permission Denied";
 	private static final int PERMISSION_REQUEST_CODE = 100;
+	protected final static String[] permissions = { Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE };
 	 
 	private CallbackContext callbackContext;
 	private JSONObject params;
@@ -59,14 +60,20 @@ public class ImagePicker extends CordovaPlugin {
 
 		if (action.equals("takePictures")) {
 
+			boolean cameraPermission = cordova.hasPermission(Manifest.permission.CAMERA);
+			boolean readPermission   = cordova.hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE);
 			
 			Intent intent = new Intent(cordova.getActivity(), CameraActivity.class);
 			
 			if (this.cordova != null) {
-				if(cordova.hasPermission(Manifest.permission.CAMERA))
+				if(cameraPermission && readPermission)
 					this.cordova.startActivityForResult((CordovaPlugin) this, intent, 0);
-				else
+				else if(!cameraPermission && readPermission)
 					cordova.requestPermission((CordovaPlugin) this, PERMISSION_REQUEST_CODE,Manifest.permission.CAMERA);
+				else if(cameraPermission && !readPermission)
+					cordova.requestPermission((CordovaPlugin) this, PERMISSION_REQUEST_CODE,Manifest.permission.WRITE_EXTERNAL_STORAGE);
+				else if
+					cordova.requestPermission((CordovaPlugin) this, PERMISSION_REQUEST_CODE, permissions);
 			}
 		}
 		return true;
