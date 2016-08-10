@@ -73,7 +73,7 @@ public class ImagePicker extends CordovaPlugin {
 				else if(cameraPermission && !readPermission)
 					cordova.requestPermission((CordovaPlugin) this, PERMISSION_REQUEST_CODE,Manifest.permission.WRITE_EXTERNAL_STORAGE);
 				else
-					cordova.requestPermission((CordovaPlugin) this, PERMISSION_REQUEST_CODE, permissions);
+					cordova.requestPermissions((CordovaPlugin) this, PERMISSION_REQUEST_CODE, permissions);
 			}
 		}
 		return true;
