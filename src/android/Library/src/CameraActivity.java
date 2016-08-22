@@ -94,8 +94,6 @@ public class CameraActivity extends Activity {
         FakeR fakeR = new FakeR(this);
         super.onCreate(savedInstanceState);
         setContentView(fakeR.getId("layout", "stopmotion_activity_camera"));
-        ImageView captureButton = (ImageView) findViewById(fakeR.getId("id", "button_capture"));
-        ImageView doneButton = (ImageView) findViewById(fakeR.getId("id", "button_done"));
 
         // Create an instance of Camera
         mCamera = getCameraInstance();
@@ -106,7 +104,7 @@ public class CameraActivity extends Activity {
         FrameLayout preview = (FrameLayout) findViewById(fakeR.getId("id", "camera_preview"));
         preview.addView(mPreview);
         
-        
+        ImageView captureButton = (ImageView) findViewById(fakeR.getId("id", "button_capture"));
         captureButton.setOnClickListener(
             new View.OnClickListener() {
                 @Override
@@ -114,8 +112,6 @@ public class CameraActivity extends Activity {
                 	Log.d(TAG, "CLICOU");
                     captureButton.setEnabled(false);
                     captureButton.setClickable(false);
-                    doneButton.setEnabled(false);
-                    doneButton.setClickable(false);
 
                     // get an image from the camera
                     mCamera.takePicture(null, null, mPicture);
@@ -125,6 +121,7 @@ public class CameraActivity extends Activity {
             }
         );
         
+        ImageView doneButton = (ImageView) findViewById(fakeR.getId("id", "button_done"));
         doneButton.setOnClickListener(
             new View.OnClickListener() {
                 @Override
@@ -215,8 +212,6 @@ public class CameraActivity extends Activity {
 				imgsPath.add(Uri.fromFile(outFile).toString());
                 captureButton.setEnabled(false);
                 captureButton.setClickable(false);
-                doneButton.setEnabled(false);
-                doneButton.setClickable(false); 
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
