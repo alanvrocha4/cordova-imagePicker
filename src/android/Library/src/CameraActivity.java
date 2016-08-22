@@ -110,6 +110,8 @@ public class CameraActivity extends Activity {
                 @Override
                 public void onClick(View v) {
                 	Log.d(TAG, "CLICOU");
+                    captureButton.setEnabled(false);
+                    doneButton.setEnabled(false);
                     // get an image from the camera
                     mCamera.takePicture(null, null, mPicture);
                     
@@ -145,7 +147,9 @@ public class CameraActivity extends Activity {
 		mCamera.startPreview();
 		
 		mPreview = new CameraPreview(this, mCamera);
-        dialog.dismiss();
+
+        captureButton.setEnabled(true);
+        doneButton.setEnabled(true);
 	}
     
     private PictureCallback mPicture = new PictureCallback() {
@@ -153,11 +157,6 @@ public class CameraActivity extends Activity {
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
         	byte[] resized = resizeImage(data);
-            
-            dialog = new ProgressDialog(CameraActivity.this);
-            dialog.setMessage("Gravando...");
-            dialog.show();
-
             new SaveImageTask().execute(resized);
             resetCam();
         }
@@ -184,7 +183,10 @@ public class CameraActivity extends Activity {
         // @Override
         // public void onPreExecute() {
 
-        //     
+        //     dialog = new ProgressDialog(CameraActivity.this);
+
+        //     dialog.setMessage("Gravando...");
+        //     dialog.show();
 
         // }
 
