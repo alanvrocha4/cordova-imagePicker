@@ -145,6 +145,7 @@ public class CameraActivity extends Activity {
 		mCamera.startPreview();
 		
 		mPreview = new CameraPreview(this, mCamera);
+        dialog.dismiss();
 	}
     
     private PictureCallback mPicture = new PictureCallback() {
@@ -152,8 +153,13 @@ public class CameraActivity extends Activity {
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
         	byte[] resized = resizeImage(data);
+            
+            dialog = new ProgressDialog(CameraActivity.this);
+            dialog.setMessage("Gravando...");
+            dialog.show();
+
             new SaveImageTask().execute(resized);
-            // resetCam();
+            resetCam();
         }
     };
     
@@ -161,8 +167,6 @@ public class CameraActivity extends Activity {
 		Intent mediaScanIntent = new Intent( Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
 		mediaScanIntent.setData(Uri.fromFile(file));
 		sendBroadcast(mediaScanIntent);
-        dialog.dismiss();
-        resetCam();
 	}
 
     private byte[] resizeImage(byte[] input) {
@@ -177,15 +181,12 @@ public class CameraActivity extends Activity {
     
 	private class SaveImageTask extends AsyncTask<byte[], Void, Void> {
 
-        
-        public void onPreExecute() {
+        // @Override
+        // public void onPreExecute() {
 
-            dialog = new ProgressDialog(CameraActivity.this);
+        //     
 
-            dialog.setMessage("Gravando...");
-            dialog.show();
-
-        }
+        // }
 
 		@Override
 		protected Void doInBackground(byte[]... data) {
@@ -218,10 +219,11 @@ public class CameraActivity extends Activity {
 			return null;
 		}
 
-        
-        protected void onPostExecute(String result) {
-            
-        }
+        // @Override
+        // protected void onPostExecute(String result) {
+        //     dialog.cancel();
+        //     resetCam();
+        // }
 
 	}
 
