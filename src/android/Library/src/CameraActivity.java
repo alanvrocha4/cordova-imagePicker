@@ -113,7 +113,6 @@ public class CameraActivity extends Activity {
                 	Log.d(TAG, "CLICOU");
                     captureButton.setEnabled(false);
                     captureButton.setClickable(false);
-
                     // get an image from the camera
                     mCamera.takePicture(null, null, mPicture);
                     
@@ -147,7 +146,8 @@ public class CameraActivity extends Activity {
     private void resetCam() {
     	Log.d(TAG,"ENTROU NO RESET CAM");
 		mCamera.startPreview();
-		
+		captureButton.setEnabled(true);
+        captureButton.setClickable(true);
 		mPreview = new CameraPreview(this, mCamera);
 	}
     
@@ -211,8 +211,6 @@ public class CameraActivity extends Activity {
 
 				refreshGallery(outFile);
 				imgsPath.add(Uri.fromFile(outFile).toString());
-                captureButton.setEnabled(false);
-                captureButton.setClickable(false);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
