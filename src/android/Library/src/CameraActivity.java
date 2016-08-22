@@ -175,7 +175,7 @@ public class CameraActivity extends Activity {
     
 	private class SaveImageTask extends AsyncTask<byte[], Void, Void> {
 
-        @Override
+        
         public void onPreExecute() {
 
             dialog = new ProgressDialog(CameraActivity.this);
@@ -216,7 +216,7 @@ public class CameraActivity extends Activity {
 			return null;
 		}
 
-        @Override
+        
         protected void onPostExecute(String result) {
             dialog.dismiss();
             resetCam();
