@@ -153,7 +153,7 @@ public class CameraActivity extends Activity {
         public void onPictureTaken(byte[] data, Camera camera) {
         	byte[] resized = resizeImage(data);
             new SaveImageTask().execute(resized);
-            resetCam();
+            // resetCam();
         }
     };
     
@@ -161,6 +161,8 @@ public class CameraActivity extends Activity {
 		Intent mediaScanIntent = new Intent( Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
 		mediaScanIntent.setData(Uri.fromFile(file));
 		sendBroadcast(mediaScanIntent);
+        dialog.dismiss();
+        resetCam();
 	}
 
     private byte[] resizeImage(byte[] input) {
@@ -218,8 +220,7 @@ public class CameraActivity extends Activity {
 
         
         protected void onPostExecute(String result) {
-            dialog.dismiss();
-            resetCam();
+            
         }
 
 	}
