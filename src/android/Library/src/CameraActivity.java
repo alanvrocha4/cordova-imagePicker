@@ -110,6 +110,11 @@ public class CameraActivity extends Activity {
                 @Override
                 public void onClick(View v) {
                 	Log.d(TAG, "CLICOU");
+                    captureButton.setEnabled(false);
+                    captureButton.setClickable(false);
+                    doneButton.setEnabled(false);
+                    doneButton.setClickable(false);
+
                     // get an image from the camera
                     mCamera.takePicture(null, null, mPicture);
                     
@@ -175,15 +180,15 @@ public class CameraActivity extends Activity {
     
 	private class SaveImageTask extends AsyncTask<byte[], Void, Void> {
 
-        public void onPreExecute() {
+        // @Override
+        // public void onPreExecute() {
 
-            dialog = new ProgressDialog(CameraActivity.this);
+        //     dialog = new ProgressDialog(CameraActivity.this);
 
-            dialog.setMessage("Gravando...");
-            dialog.setCancelable(false);
-            dialog.show();
+        //     dialog.setMessage("Gravando...");
+        //     dialog.show();
 
-        }
+        // }
 
 		@Override
 		protected Void doInBackground(byte[]... data) {
@@ -207,7 +212,10 @@ public class CameraActivity extends Activity {
 
 				refreshGallery(outFile);
 				imgsPath.add(Uri.fromFile(outFile).toString());
-                dialog.dismiss();
+                captureButton.setEnabled(false);
+                captureButton.setClickable(false);
+                doneButton.setEnabled(false);
+                doneButton.setClickable(false); 
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
