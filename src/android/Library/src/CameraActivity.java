@@ -95,7 +95,7 @@ public class CameraActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(fakeR.getId("layout", "stopmotion_activity_camera"));
         ImageView captureButton = (ImageView) findViewById(fakeR.getId("id", "button_capture"));
-        ImageView doneButton = (ImageView) findViewById(fakeR.getId("id", "button_done"))
+        ImageView doneButton = (ImageView) findViewById(fakeR.getId("id", "button_done"));
 
         // Create an instance of Camera
         mCamera = getCameraInstance();
@@ -125,7 +125,6 @@ public class CameraActivity extends Activity {
             }
         );
         
-        ;
         doneButton.setOnClickListener(
             new View.OnClickListener() {
                 @Override
