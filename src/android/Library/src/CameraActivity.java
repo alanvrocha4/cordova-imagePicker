@@ -88,6 +88,7 @@ public class CameraActivity extends Activity {
 	
 	private Camera mCamera;
     private CameraPreview mPreview;
+    private ImageView captureButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -104,7 +105,7 @@ public class CameraActivity extends Activity {
         FrameLayout preview = (FrameLayout) findViewById(fakeR.getId("id", "camera_preview"));
         preview.addView(mPreview);
         
-        ImageView captureButton = (ImageView) findViewById(fakeR.getId("id", "button_capture"));
+        captureButton = (ImageView) findViewById(fakeR.getId("id", "button_capture"));
         captureButton.setOnClickListener(
             new View.OnClickListener() {
                 @Override
