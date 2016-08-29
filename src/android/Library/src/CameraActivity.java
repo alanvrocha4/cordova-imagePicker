@@ -39,8 +39,8 @@ public class CameraActivity extends Activity {
 
     public static final int MEDIA_TYPE_IMAGE = 1;
     public static final int MEDIA_TYPE_VIDEO = 2;
-    public static final int PHOTO_WIDTH = 600;
-    public static final int PHOTO_HEIGHT = 600;
+    public static final int PHOTO_WIDTH = 360;
+    public static final int PHOTO_HEIGHT = 480;
     public static final int PHOTO_QUALITY = 50;
     private ProgressDialog dialog;
 
