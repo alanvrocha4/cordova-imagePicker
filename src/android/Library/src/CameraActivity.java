@@ -115,7 +115,7 @@ public class CameraActivity extends Activity {
                     captureButton.setClickable(false);
                     // get an image from the camera
                     mCamera.takePicture(null, null, mPicture);
-                    resetCam();
+                    
                     
                     
                 }
@@ -157,6 +157,7 @@ public class CameraActivity extends Activity {
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
         	byte[] resized = resizeImage(data);
+        	resetCam();
             new SaveImageTask().execute(resized);
         }
     };
